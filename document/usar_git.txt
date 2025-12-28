@@ -109,3 +109,67 @@ Na linha do tempo, o VSCode mostrará os commits realizados. Podemos clicar em c
 
 Concluindo a sessão
 Por enquanto, é isso. No próximo vídeo, aprenderemos a publicar o código no GitHub. Até lá!
+
+
+🔍 1️⃣ Ver o histórico de versões (commits)
+
+Primeiro, veja as versões salvas no Git:
+
+git log --oneline
+
+
+Exemplo de saída:
+
+a1b2c3d Atualiza usar_git.txt
+e4f5g6h Primeiro commit do projeto
+
+
+O código (a1b2c3d) é o ID do commit.
+
+🔄 2️⃣ Voltar um arquivo para uma versão antiga
+
+Se você quer restaurar apenas um arquivo:
+
+git restore --source=e4f5g6h document/usar_git.txt
+
+
+Depois disso, se quiser salvar essa volta:
+
+git add document/usar_git.txt
+git commit -m "Restaura usar_git.txt para versão anterior"
+
+⏪ 3️⃣ Voltar o projeto inteiro para um commit antigo (sem apagar histórico)
+
+Isso muda os arquivos, mas mantém o histórico:
+
+git checkout e4f5g6h
+
+
+⚠️ Atenção: isso coloca o repositório em detached HEAD
+Para voltar para a branch normal:
+
+git checkout master
+
+🔥 4️⃣ Voltar definitivamente para uma versão antiga (apaga commits depois)
+
+⚠️ Use com cuidado:
+
+git reset --hard e4f5g6h
+
+
+Isso:
+
+Volta todos os arquivos
+
+Remove commits mais novos
+
+Apaga alterações não commitadas
+
+🌐 5️⃣ Se o projeto já estiver no GitHub
+
+Depois de um reset --hard, você precisa forçar o push:
+
+git push -f origin master
+
+
+⚠️ Cuidado se outras pessoas usam o repositório.
